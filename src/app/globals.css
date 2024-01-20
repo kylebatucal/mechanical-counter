@@ -1,6 +1,30 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+.wheel {
+  /* background-color: red; */
+  position: relative;
+  width: 16vw;
+  height: 500px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transition-duration: 0.15s;
+}
+
+.segment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  background-color: #ccc;
+}
+
+.segment:nth-child(even) {
+  background-color: #ddd;
+}
 
 /* :root {
   --foreground-rgb: 0, 0, 0;
