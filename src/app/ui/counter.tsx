@@ -2,52 +2,69 @@
 
 import { useState } from 'react'
  
+// function Wheel() {
+//   // Return wheel
+//   const [degrees, setDegrees] = useState(0)
+
+//   return (
+//     <div>
+//       <div 
+//         className='wheel'
+//         style={{
+//           transformOrigin: `50% calc(50% + ${height / 2}px)`,
+//           transform: `rotateX(${degrees}deg) rotateY(30deg)`
+//         }}
+//       >
+//         {segments}
+//       </div>
+//       <button onMouseDown={() => {setDegrees(degrees+36)}}>Click me</button>
+//     </div>
+//   )
+// }
+
+
+
 function Wheel() {
-  const numbers = [0,9,8,7,6,5,4,3,2,1]
-  const diameter = 350;
+  const numbers = [0,1,2,3,4,5,6,7,8,9]
+  const diameter = 200 // in pixels
   const radius = diameter / 2
-  // const circumference = Math.PI * diameter
-  const height = 113
+  const segmentHeight = (3.25 * diameter) / numbers.length // Because it is not a perfect circle we make pi = 3.25
 
-  // Create segments
-  const segments = numbers.map((digit, i) => {
-    const style = {
-      transform: `rotateX(${36*i}deg) translateZ(${radius}px)`,
-      height: height
-    }
-
-    return (
-      <div className='segment' style={style} key={digit.toString()}>
-        {digit}
-      </div>
-    )
+    const segments = numbers.map((digit, i) => {
+      const segmentTransform = {
+        transform: `rotateX(${-(360/numbers.length)*i}deg) translateZ(${radius}px)`,
+        height: segmentHeight,
+        top: `calc(50% - ${segmentHeight / 2}px)`
+      }
+      return (
+        <div 
+        className='segment absolute w-full flex items-center justify-center text-5xl' 
+        style={segmentTransform} 
+        key={digit.toString()}>
+          {digit}
+        </div>
+      )
   })
 
-  // Return wheel
-  const [degrees, setDegrees] = useState(0)
 
+  const wheelTransform = {
+    transformOrigin: 'center',
+    // transform: `rotateX(${degrees}deg) rotateY(30deg)`  
+  }
   return (
-    <div>
-      <div 
-        className='wheel'
-        style={{
-          transformOrigin: `50% calc(50% + ${height / 2}px)`,
-          transform: `rotateX(${degrees}deg)`
-        }}
-      >
-        {segments}
-      </div>
-      <button onMouseDown={() => {setDegrees(degrees+36)}}>Click me</button>
+    <div className='wheel' style={wheelTransform}>
+      {segments}
     </div>
   )
-  
 }
 
 export default function Counter() {
 
   return (
-    <div>
-      <Wheel/>
+    <div className='h-screen'>
+      <div className='border bg-fuchsia-200'>
+        <Wheel/>
+      </div>
     </div>
   )
 
