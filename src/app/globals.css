@@ -5,21 +5,20 @@
 .wheel {
   height: 800px;
   width: 3rem;
-  margin: 0 auto;
-
+  color: white;
   transform: rotateX(0deg);
   transform-style: preserve-3d;
 
-  /* transition-duration: 0.15s; */
+  transition-duration: 0.15s;
   /* background-color: red; */
 }
 
 .segment:nth-child(odd) {
-  background-color: #ccc;
+  background-color: #2a2a2a;
 }
 
 .segment:nth-child(even) {
-  background-color: #ddd;
+  background-color: #212121;
 }
 
 /* .wheel {

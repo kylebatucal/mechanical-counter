@@ -1,38 +1,17 @@
 'use client'
 
 import { useState } from 'react'
- 
-// function Wheel() {
-//   // Return wheel
-//   const [degrees, setDegrees] = useState(0)
 
-//   return (
-//     <div>
-//       <div 
-//         className='wheel'
-//         style={{
-//           transformOrigin: `50% calc(50% + ${height / 2}px)`,
-//           transform: `rotateX(${degrees}deg) rotateY(30deg)`
-//         }}
-//       >
-//         {segments}
-//       </div>
-//       <button onMouseDown={() => {setDegrees(degrees+36)}}>Click me</button>
-//     </div>
-//   )
-// }
-
-
-
-function Wheel() {
+function Wheel({ digit=0 }) {
   const numbers = [0,1,2,3,4,5,6,7,8,9]
   const diameter = 200 // in pixels
   const radius = diameter / 2
   const segmentHeight = (3.25 * diameter) / numbers.length // Because it is not a perfect circle we make pi = 3.25
+  const angle = 36
 
     const segments = numbers.map((digit, i) => {
       const segmentTransform = {
-        transform: `rotateX(${-(360/numbers.length)*i}deg) translateZ(${radius}px)`,
+        transform: `rotateX(${-angle*i}deg) translateZ(${radius}px)`,
         height: segmentHeight,
         top: `calc(50% - ${segmentHeight / 2}px)`
       }
@@ -46,11 +25,11 @@ function Wheel() {
       )
   })
 
-
   const wheelTransform = {
     transformOrigin: 'center',
-    // transform: `rotateX(${degrees}deg) rotateY(30deg)`  
+    transform: `rotateX(${angle * digit}deg)`  
   }
+
   return (
     <div className='wheel' style={wheelTransform}>
       {segments}
@@ -58,40 +37,24 @@ function Wheel() {
   )
 }
 
-export default function Counter() {
+export default function Counter({ startingValue = 0 }) {
+  const [count, setCount] = useState(startingValue)
+
 
   return (
-    <div className='h-screen'>
-      <div className='border bg-fuchsia-200'>
-        <Wheel/>
+    <div 
+      className='h-screen' 
+      onMouseDown={e => setCount(count + 1)}
+    >
+      <div className='border h-full bg-fuchsia-200 flex'>
+        <Wheel digit={Math.floor(count / 1000)}/>
+        <Wheel digit={Math.floor(count / 100)}/>
+        <Wheel digit={Math.floor(count / 10)}/>
+        <Wheel digit={count}/>
       </div>
     </div>
   )
 
-
-  // const [thousands, setThousands] = useState(0)
-  // const [hundreds, setHundreds] = useState(0)
-  // const [tens, setTens] = useState(0)
-  // const [ones, setOnes] = useState(0)
-
-  // const incrementDigit = (digit: number, setDigit: Function) => {
-  //   if (digit == 9) {
-  //     setDigit(0)
-  //     return true
-  //   }
-  //   setDigit(digit + 1)
-  //   return false
-  // }
-
-  // const incrementCount = () => {
-  //   if (incrementDigit(ones, setOnes)) {
-  //     if (incrementDigit(tens, setTens)) {
-  //       if (incrementDigit(hundreds, setHundreds)) {
-  //         incrementDigit(thousands, setThousands)
-  //       }
-  //     }
-  //   }
-  // }
 
   // const resetCount = (event: any) => {
   //   if (event.deltaY < 0) {
