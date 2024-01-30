@@ -3,44 +3,16 @@
 @tailwind utilities;
 
 .wheel {
-  height: 800px;
-  width: 3rem;
-  color: white;
+  width: 5rem;
   transform: rotateX(0deg);
   transform-style: preserve-3d;
-
-  transition-duration: 0.15s;
-  /* background-color: red; */
+  transition-duration: 0.1s;
 }
 
 .segment:nth-child(odd) {
-  background-color: #2a2a2a;
+  background-color: #202020;
 }
 
 .segment:nth-child(even) {
-  background-color: #212121;
+  background-color: #202020;
 }
-
-/* .wheel {
-  background-color: red;
-  position: static;
-  width: 16vw;
-  height: 500px;
-  margin: 0 auto;
-  transform-style: preserve-3d;
-  transition-duration: 0.15s;
-}
-
-.segment {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  background-color: #ccc;
-} */
-
-/* .segment:nth-child(even) {
-  background-color: #ddd;
-} */

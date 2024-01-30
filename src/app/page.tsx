@@ -17,6 +17,6 @@ export default function Home() {
   }
 
   return (
-    <Counter startingValue={value}/>
+    <Counter startingValue={value} />
   );
 }
