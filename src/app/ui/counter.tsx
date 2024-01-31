@@ -20,7 +20,7 @@ function Wheel({ digit = 0 }) {
 
     return (
       <div
-        className="segment w-full absolute flex items-center justify-center text-[8.5rem] select-none text-[#FAF9F6] drop-shadow-xl"
+        className="segment w-full absolute flex items-center justify-center text-[8.5rem] select-none bg-[#212121] dark:bg-[#FAF9F6] text-[#FAF9F6]  dark:text-black drop-shadow-xl"
         style={segmentTransform}
         key={digit.toString()}
       >
@@ -63,8 +63,7 @@ export default function Counter({ startingValue = 0 }) {
   const incrementCount = (event: MouseEvent) => {
     if (event.button == 0) {
       setOnes(ones + 1);
-      if ((ones + 1) % 10 == 0) {
-        // + 1 because useState() is always 1 behind for some reason
+      if ((ones + 1) % 10 == 0) { // + 1 because useState() is always 1 behind for some reason
         setTens(tens + 1);
         if ((tens + 1) % 10 == 0) {
           setHundreds(hundreds + 1);
@@ -84,8 +83,7 @@ export default function Counter({ startingValue = 0 }) {
 
       // Check each digit if it is equal to the thousand's digit
       digits.map((digit, i) => {
-        if (digit % 10 == thousands % 10) {
-          // get last digit
+        if (digit % 10 == thousands % 10) { // get last digit
           setDigits[i](digit + 1);
         }
       });
@@ -97,7 +95,7 @@ export default function Counter({ startingValue = 0 }) {
 
   return (
     <div
-      className="h-full flex items-center justify-center bg-stone-300"
+      className="h-full flex items-center justify-center bg-stone-300 dark:bg-[#212121]"
       onMouseDown={incrementCount}
       onWheel={resetCount}
     >
@@ -107,6 +105,7 @@ export default function Counter({ startingValue = 0 }) {
         <Wheel digit={tens} />
         <Wheel digit={ones} />
       </div>
+      {/* This code makes it so that you can copy and paste the current count, but I don't like it.*/}
       {/* <div className='frame absolute left-1/2 -translate-x-1/2 flex w-[320px] text-[8.5rem] text-transparent tracking-[-4px]'>
           {thousands%10}{hundreds%10}{tens%10}{ones%10}
         </div> */}

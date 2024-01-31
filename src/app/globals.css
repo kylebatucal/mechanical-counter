@@ -19,11 +19,3 @@
   transform-style: preserve-3d;
   transition-duration: 0.1s;
 }
-
-.segment:nth-child(odd) {
-  background-color: #222222;
-}
-
-.segment:nth-child(even) {
-  background-color: #212121;
-}
