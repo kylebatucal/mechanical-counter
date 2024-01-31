@@ -2,17 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+.frame {
+  transform-style: preserve-3d;
+  transform: scale(0.5) rotateY(45deg);
+  transition-duration: 0.5s;
+}
+
+@media (min-width: 1024px) {
+  .frame {
+    transform: rotateY(45deg);
+  }
+}
+
 .wheel {
-  width: 5rem;
   transform: rotateX(0deg);
   transform-style: preserve-3d;
   transition-duration: 0.1s;
 }
 
 .segment:nth-child(odd) {
-  background-color: #202020;
+  background-color: #222222;
 }
 
 .segment:nth-child(even) {
-  background-color: #202020;
+  background-color: #212121;
 }
