@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, MouseEvent, WheelEvent } from "react";
 
 function Wheel({ digit = 0 }) {
   // Parameters
@@ -60,8 +60,8 @@ export default function Counter({ startingValue = 0 }) {
   const [ones, setOnes] = useState(digits[3]);
 
   // Increment function
-  const incrementCount = (e: MouseEvent) => {
-    if (e.button == 0) {
+  const incrementCount = (event: MouseEvent) => {
+    if (event.button == 0) {
       setOnes(ones + 1);
       if ((ones + 1) % 10 == 0) {
         // + 1 because useState() is always 1 behind for some reason
@@ -77,8 +77,8 @@ export default function Counter({ startingValue = 0 }) {
   };
 
   // Reset function
-  const resetCount = (e: WheelEvent) => {
-    if (e.deltaY < 0) {
+  const resetCount = (event: WheelEvent) => {
+    if (event.deltaY < 0) {
       const digits = [hundreds, tens, ones];
       const setDigits = [setHundreds, setTens, setOnes];
 
