@@ -24,7 +24,7 @@ export default function Home() {
         source on{" "}
         <Link
           className="text-blue-500"
-          href="https://github.com/kylebatucal/mechanicalcounter"
+          href="https://github.com/kylebatucal/mechanical-counter"
         >
           github
         </Link>
