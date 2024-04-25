@@ -2,6 +2,7 @@
 
 import { MouseEvent, WheelEvent, useState } from 'react'
 import useSound from 'use-sound'
+import { set } from 'zod'
 
 function Wheel({ digit = 0 }) {
   // Parameters
@@ -71,16 +72,16 @@ export default function Counter({ startingValue = 0 }) {
   const [ones, setOnes] = useState(digits[3])
 
   // Increment function
-  const PLAY = 0.25
+  const PLAY = 0.25 // This variable makes the wheel go a little bit past where it's supposed to go
   const incrementCount = (event: MouseEvent) => {
-    setOnes(Math.floor(ones) + 1 + PLAY)
+    setOnes(Math.floor(ones) + 1 + PLAY) // Floor the digit in case the play didn't reset
     if ((ones + 1) % 10 == 0) {
       // + 1 because useState() is always 1 behind for some reason
-      setTens(tens + 1)
+      setTens(Math.floor(tens) + 1 + PLAY)
       if ((tens + 1) % 10 == 0) {
-        setHundreds(hundreds + 1)
+        setHundreds(Math.floor(hundreds) + 1 + PLAY)
         if ((hundreds + 1) % 10 == 0) {
-          setThousands(thousands + 1)
+          setThousands(Math.floor(thousands) + 1 + PLAY)
         }
       }
     }
@@ -89,7 +90,19 @@ export default function Counter({ startingValue = 0 }) {
 
   // MouseUp function
   const relieve = (event: MouseEvent) => {
-    setOnes(ones - PLAY)
+    // Check if each digit has a bit of play in it
+    if (ones % 1 != 0) {
+      setOnes(ones - PLAY)
+    }
+    if (tens % 1 != 0) {
+      setTens(tens - PLAY)
+    }
+    if (hundreds % 1 != 0) {
+      setHundreds(hundreds - PLAY)
+    }
+    if (thousands % 1 != 0) {
+      setThousands(thousands - PLAY)
+    }
     playSound({ id: 'clickUp' })
   }
 
@@ -101,10 +114,11 @@ export default function Counter({ startingValue = 0 }) {
 
       // Check each digit if it is equal to the thousand's digit
       digits.map((digit, i) => {
-        if (digit == ones) {
-          digit = Math.floor(digit)
+        digit = Math.floor(digit) // Floor the digit in case the play didn't reset
+        if (thousands % 1 != 0) {
+          setThousands(thousands - PLAY)
         }
-        if (digit % 10 == thousands % 10) {
+        if (digit % 10 == Math.floor(thousands) % 10) {
           // get last digit
           setDigits[i](digit + 1)
         }

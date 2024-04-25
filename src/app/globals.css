@@ -4,18 +4,18 @@
 
 .frame {
   transform-style: preserve-3d;
-  transform: scale(0.5) rotateY(45deg);
+  transform: scale(0.5) rotateY(45deg) rotateX(3deg);
   transition-duration: 0.5s;
 }
 
 @media (min-width: 1024px) {
   .frame {
-    transform: rotateY(45deg);
+    transform: rotateY(45deg) rotateX(3deg);
   }
 }
 
 .wheel {
   transform: rotateX(0deg);
   transform-style: preserve-3d;
-  transition-duration: 0.07s;
+  transition-duration: 0.1s;
 }
