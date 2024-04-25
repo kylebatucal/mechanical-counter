@@ -17,5 +17,5 @@
 .wheel {
   transform: rotateX(0deg);
   transform-style: preserve-3d;
-  transition-duration: 0.1s;
+  transition-duration: 0.07s;
 }

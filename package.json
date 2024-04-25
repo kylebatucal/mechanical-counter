@@ -14,6 +14,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-responsive": "^9.0.2",
+    "use-sound": "^4.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -25,7 +26,7 @@
     "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "^9.1.0",
     "postcss": "^8",
-    "prettier": "3.2.4",
+    "prettier": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
